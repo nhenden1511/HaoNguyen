@@ -33,20 +33,22 @@ namespace AppManager.View.Product
         {
             InitializeComponent();
 
-            var props = ProductPropertiesRepository.Instance.GetAll();
-            colors = props.Where(p => p.Type == ProductType.Color).ToList();
-            sizes = props.Where(p => p.Type == ProductType.Size).ToList();
+            ReloadColorSize();
 
-            _groups = ProductGroupRepository.Instance.GetAll();
-            BindingList<ProductGroup> dataSource = new BindingList<ProductGroup>(_groups);
-            _gridGroup.DataSource = dataSource;
-            bsiRecordsCount.Caption = "Total Groups : " + dataSource.Count;
+            ReloadGroup();
 
             if (_groups != null) _currentGroup = _groups.FirstOrDefault();
 
             gv = _gridGroup.MainView as GridView;
             gv.GroupPanelText = "Product Group";
 
+        }
+
+        void ReloadColorSize()
+        {
+            var props = ProductPropertiesRepository.Instance.GetAll();
+            colors = props.Where(p => p.Type == ProductType.Color).ToList();
+            sizes = props.Where(p => p.Type == ProductType.Size).ToList();
         }
 
         void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
@@ -56,20 +58,32 @@ namespace AppManager.View.Product
 
         private void bbiNew_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //var group = new ProductGroup("a1", "a2");
-            //ProductGroupRepository.Instance.Insert(group);
+            var dialog = new AddGroupDialog();
+            var result = dialog.ShowDialog();
+            if(result == DialogResult.Yes)
+            {
+                ReloadGroup();
+            }
         }
 
         private void _btnAddColor_ItemClick(object sender, ItemClickEventArgs e)
         {
             var dialog = new AddColorSizeDialog(true);
             var result = dialog.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                ReloadColorSize();
+            }
         }
 
         private void _btnAddSize_ItemClick(object sender, ItemClickEventArgs e)
         {
             var dialog = new AddColorSizeDialog(false);
             var result = dialog.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                ReloadColorSize();
+            }
         }
 
         private void _itemColorClick_CheckedChanged(object sender, EventArgs e)
@@ -102,6 +116,14 @@ namespace AppManager.View.Product
             var currentSize = sizes.Select(p => new ViewItemModel(p.Id, p.Name, colorMap.Contains(p.Id) ? true : false)).ToList();
             _sizeDataSource = new BindingList<ViewItemModel>(currentSize);
             _gridSize.DataSource = _sizeDataSource;
+        }
+
+        void ReloadGroup()
+        {
+            _groups = ProductGroupRepository.Instance.GetAll();
+            BindingList<ProductGroup> dataSource = new BindingList<ProductGroup>(_groups);
+            _gridGroup.DataSource = dataSource;
+            bsiRecordsCount.Caption = "Total Groups : " + dataSource.Count;
         }
     }
 }

@@ -40,10 +40,11 @@ namespace AppManager.View.Product
                 _currentProductGroup = _currentListGroups.FirstOrDefault();
             LoadProductByGroup();
 
-            if (_currentListProduct.Count > 0)
+            if (_currentListProduct?.Count > 0)
+            {
                 _currentProduct = _currentListProduct.FirstOrDefault();
-
-            LoadColorSizeByProduct();
+                LoadColorSizeByProduct();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,7 +98,7 @@ namespace AppManager.View.Product
 
         private void _cbbProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_currentListProduct != null)
+            if (_currentListProduct != null && _currentListProduct.Count > 0)
             {
                 var cbb = sender as System.Windows.Forms.ComboBox;
                 _currentProduct = _currentListProduct.ElementAtOrDefault(cbb.SelectedIndex);
