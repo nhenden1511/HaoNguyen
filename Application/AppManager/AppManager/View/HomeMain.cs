@@ -66,5 +66,20 @@ namespace AppManager.View
                 frm.Activate();
             }
         }
+
+        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = CheckForm(typeof(InputProductDialog));
+            if (frm == null)
+            {
+                InputProductDialog forms = new InputProductDialog();
+                forms.MdiParent = this;
+                forms.Show();
+            }
+            else
+            {
+                frm.Activate();
+            }
+        }
     }
 }

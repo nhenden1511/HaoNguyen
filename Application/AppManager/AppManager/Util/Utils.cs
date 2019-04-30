@@ -1,10 +1,14 @@
 ﻿using AppManager.Entity;
+using AppManager.Repository;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Base;
 using PCLCrypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AppManager.Util
 {
@@ -16,7 +20,41 @@ namespace AppManager.Util
 
     public static class Utils
     {
-        
+        public static long GetIdFocus(this GridControl grid)
+        {
+            var col = grid.MainView as ColumnView;
+            return (long)col.GetFocusedRowCellValue("Id");
+        }
+
+        public static IList<ProductGroup> LoadGroupToCBB(this ComboBox combobox)
+        {
+            var _groups = ProductGroupRepository.Instance.GetAll();
+
+            if (_groups.Count > 0)
+            {
+                foreach (var item in _groups)
+                {
+                    combobox.Items.Add(item.Name);
+                }
+                combobox.SelectedIndex = 0;
+            }
+            return _groups;
+        }
+
+        public static IList<Product> LoadProductToCBB(this ComboBox combobox, long groupId)
+        {
+            var products = ProductRepository.Instance.GetProductsByGroup(groupId);
+
+            if (products.Count > 0)
+            {
+                foreach (var item in products)
+                {
+                    combobox.Items.Add(item.Name);
+                }
+                combobox.SelectedIndex = 0;
+            }
+            return products;
+        }
     }
 
     public static class Identify

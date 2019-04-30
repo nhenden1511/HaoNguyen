@@ -13,6 +13,8 @@ using System.ComponentModel.DataAnnotations;
 using AppManager.Entity;
 using AppManager.Repository;
 using IProduct = AppManager.Entity.Product;
+using DevExpress.XtraGrid.Views.Base;
+using AppManager.Util;
 
 namespace AppManager.View.Product
 {
@@ -33,8 +35,9 @@ namespace AppManager.View.Product
 
         private void gridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            _currentGroup = _groups.ElementAt(e.FocusedRowHandle);
-            var products = ProductRepository.Instance.GetProductsByGroup(_currentGroup.Id);
+            var groupId = _gridProductGroup.GetIdFocus();
+            _currentGroup = _groups.Where(p => p.Id == groupId).FirstOrDefault();
+            var products = ProductRepository.Instance.GetProductsByGroup(groupId);
             BindingList<IProduct> dataSource = new BindingList<IProduct>(products);
             _gridProduct.DataSource = dataSource;
         }
@@ -42,7 +45,16 @@ namespace AppManager.View.Product
         private void bbiNew_ItemClick(object sender, ItemClickEventArgs e)
         {
             var dialog = new AddProduct(_currentGroup);
-            dialog.ShowDialog();
+            var result = dialog.ShowDialog();
+            if (result == DialogResult.Yes) Reload();
+
+        }
+
+        void Reload()
+        {
+            var products = ProductRepository.Instance.GetProductsByGroup(_currentGroup.Id);
+            BindingList<IProduct> dataSource = new BindingList<IProduct>(products);
+            _gridProduct.DataSource = dataSource;
         }
     }
 }

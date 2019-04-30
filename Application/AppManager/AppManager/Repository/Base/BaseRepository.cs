@@ -52,7 +52,7 @@ namespace AppManager.Repository
                 }
             }
         }
-        public virtual T GetById(int id)
+        public virtual T GetById(long id)
         {
             lock (DbInitialization.Lockdb)
             {
@@ -62,6 +62,7 @@ namespace AppManager.Repository
                 }
             }
         }
+
         public TU ExecuteScalar<TU>(string cmdText, params object[] args)
         {
             lock (DbInitialization.Lockdb)

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace AppManager.Repository
 {
-    public class ProductGroupMapRepository : BaseRepository<ProductGroupMap>
+    public class GroupPropertiesMapRepository : BaseRepository<GroupPropertiesMap>
     {
-        static readonly Lazy<ProductGroupMapRepository> _instance = new Lazy<ProductGroupMapRepository>();
+        static readonly Lazy<GroupPropertiesMapRepository> _instance = new Lazy<GroupPropertiesMapRepository>();
 
-        public static ProductGroupMapRepository Instance
+        public static GroupPropertiesMapRepository Instance
         {
             get
             {
@@ -20,13 +20,13 @@ namespace AppManager.Repository
             }
         }
 
-        public List<ProductGroupMap> GetAllGroupMap(long groupId)
+        public List<GroupPropertiesMap> GetAllGroupMap(long groupId)
         {
             lock (DbInitialization.Lockdb)
             {
                 using (var db = NewConnection())
                 {
-                    return db.Table<ProductGroupMap>().Where(p=>p.ProductGroupId == groupId).ToList();
+                    return db.Table<GroupPropertiesMap>().Where(p=>p.ProductGroupId == groupId).ToList();
                 }
             }
         }
@@ -37,7 +37,7 @@ namespace AppManager.Repository
             {
                 using (var db = NewConnection())
                 {
-                    return db.Table<ProductGroupMap>().Where(p => p.ProductGroupId == groupId && !p.IsDelete).Select(p=>p.ProductPropertiesId).ToList();
+                    return db.Table<GroupPropertiesMap>().Where(p => p.ProductGroupId == groupId && !p.IsDelete).Select(p=>p.ProductPropertiesId).ToList();
                 }
             }
         }
@@ -48,7 +48,7 @@ namespace AppManager.Repository
             {
                 using (var db = NewConnection())
                 {
-                    var entity = db.Table<ProductGroupMap>().Where(p => p.ProductGroupId == groupId && p.ProductPropertiesId == propId).FirstOrDefault();
+                    var entity = db.Table<GroupPropertiesMap>().Where(p => p.ProductGroupId == groupId && p.ProductPropertiesId == propId).FirstOrDefault();
                     if (entity != null)
                     {
                         entity.IsDelete = !status;
@@ -56,7 +56,7 @@ namespace AppManager.Repository
                     }
                     else
                     {
-                        entity = new ProductGroupMap(groupId, propId);
+                        entity = new GroupPropertiesMap(groupId, propId);
                         Insert(entity);
                     }
                 }

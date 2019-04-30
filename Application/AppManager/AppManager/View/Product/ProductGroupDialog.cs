@@ -42,20 +42,12 @@ namespace AppManager.View.Product
             _gridGroup.DataSource = dataSource;
             bsiRecordsCount.Caption = "Total Groups : " + dataSource.Count;
 
+            if (_groups != null) _currentGroup = _groups.FirstOrDefault();
+
             gv = _gridGroup.MainView as GridView;
-            //gv.FocusedRowChanged += Gv_FocusedRowChanged;
             gv.GroupPanelText = "Product Group";
 
-            //_searchColor.
         }
-
-        //private void Gv_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        //{
-        //    _currentGroup = _groups.ElementAt(e.FocusedRowHandle);
-        //    var col = _gridGroup.MainView as ColumnView;
-        //    var id = (long)col.GetFocusedRowCellValue("Id");
-            
-        //}
 
         void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -64,8 +56,8 @@ namespace AppManager.View.Product
 
         private void bbiNew_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var group = new ProductGroup("a1", "a2");
-            ProductGroupRepository.Instance.Insert(group);
+            //var group = new ProductGroup("a1", "a2");
+            //ProductGroupRepository.Instance.Insert(group);
         }
 
         private void _btnAddColor_ItemClick(object sender, ItemClickEventArgs e)
@@ -84,21 +76,23 @@ namespace AppManager.View.Product
         {
             CheckEdit cEdit = (CheckEdit)sender;
             var col = _gridColor.MainView as ColumnView;
-            ProductGroupMapRepository.Instance.UpdateStatus(_currentGroup.Id, (long)col.GetFocusedRowCellValue("Id"), cEdit.Checked);
+            GroupPropertiesMapRepository.Instance.UpdateStatus(_currentGroup.Id, (long)col.GetFocusedRowCellValue("Id"), cEdit.Checked);
         }
 
         private void _itemSizeSelected_CheckedChanged(object sender, EventArgs e)
         {
             CheckEdit cEdit = (CheckEdit)sender;
             var col = _gridSize.MainView as ColumnView;
-            ProductGroupMapRepository.Instance.UpdateStatus(_currentGroup.Id, (long)col.GetFocusedRowCellValue("Id"), cEdit.Checked);
+            GroupPropertiesMapRepository.Instance.UpdateStatus(_currentGroup.Id, (long)col.GetFocusedRowCellValue("Id"), cEdit.Checked);
         }
 
         private void gridView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             var col = _gridGroup.MainView as ColumnView;
 
-            var colorMap = ProductGroupMapRepository.Instance.GetAllGroupMapPropertiesId((long)col.GetFocusedRowCellValue("Id"));
+            _currentGroup = _groups.Where(p => p.Id == ((long)col.GetFocusedRowCellValue("Id"))).FirstOrDefault();
+
+            var colorMap = GroupPropertiesMapRepository.Instance.GetAllGroupMapPropertiesId(_currentGroup.Id);
 
             var currentColor = colors.Select(p => new ViewItemModel(p.Id, p.Name, colorMap.Contains(p.Id) ? true : false)).ToList();
             _colorDataSource = new BindingList<ViewItemModel>(currentColor);

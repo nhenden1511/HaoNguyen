@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace AppManager.Entity
 {
-    public class ProductGroupMap : BaseEntity
+    public class GroupPropertiesMap : BaseEntity
     {
-        public ProductGroupMap()
+        public GroupPropertiesMap()
         {
 
         }
         public long ProductGroupId { get; set; }
         public long ProductPropertiesId { get; set; }
 
-        public ProductGroupMap(long groupId, long prop)
+        public GroupPropertiesMap(long groupId, long prop)
         {
             ProductGroupId = groupId;
             ProductPropertiesId = prop;

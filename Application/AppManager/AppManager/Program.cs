@@ -23,7 +23,7 @@ namespace AppManager
 
             Identify.Device = DeviceRepository.Instance.GetMasterDevice();
 
-            Application.Run(new ProductDialog());
+            Application.Run(new HomeMain());
         }
     }
 }

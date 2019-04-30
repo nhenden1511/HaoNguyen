@@ -24,7 +24,6 @@ namespace AppManager.View.Product
         {
             InitializeComponent();
 
-
             _groups = ProductGroupRepository.Instance.GetAll();
             _currentProductGroup = _groups.Where(p=>p.Id == productGroup.Id).FirstOrDefault();
 
@@ -39,7 +38,26 @@ namespace AppManager.View.Product
         {
             if (!string.IsNullOrWhiteSpace(_txtProductName.Text) && !string.IsNullOrWhiteSpace(_txtPrice.Text))
             {
-                var product = new IProduct();
+                var name = _txtProductName.Text;
+                var groupId = _currentProductGroup.Id;
+                var price = int.Parse(_txtPrice.Text);
+                var orderPrice = int.Parse(_txtOrderPrice.Text);
+                var product = new IProduct(groupId, name, price, orderPrice);
+                try
+                {
+                    ProductRepository.Instance.Insert(product);
+                    this.Close();
+                    DialogResult = DialogResult.Yes;
+                }
+                catch (Exception ex)
+                {
+                    string message = ex.ToString();
+                    string caption = "Error";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result;
+                    result = MessageBox.Show(message, caption, buttons);
+                }
+                
             }
         }
 

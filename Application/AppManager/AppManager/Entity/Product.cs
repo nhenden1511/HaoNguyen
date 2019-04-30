@@ -13,14 +13,15 @@ namespace AppManager.Entity
         {
 
         }
+
         public string Name { get; set; }
         public long ProductCode { get; set; }
         public string Image { get; set; }
-        public uint Price { get; set; }
-        public uint OrderPrice { get; set; }
-        public int GroupId { get; set; }
+        public int Price { get; set; }
+        public int OrderPrice { get; set; }
+        public long GroupId { get; set; }
 
-        public Product(int groupId, string name, uint price, uint orderPrice = 0)
+        public Product(long groupId, string name, int price, int orderPrice = 0)
         {
             GroupId = groupId;
             Name = name;
