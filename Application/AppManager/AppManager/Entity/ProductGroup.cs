@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,9 @@ namespace AppManager.Entity
         {
 
         }
+        [Unique]
         public string Name { get; set; }
+        [Unique]
         public string GroupCode { get; set; }
         public string Image { get; set; }
         public ProductGroup(string name, string code)
