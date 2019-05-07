@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this._txtQuantity = new DevExpress.XtraEditors.TextEdit();
-            this._txtTotalPrice = new DevExpress.XtraEditors.TextEdit();
-            this.button1 = new System.Windows.Forms.Button();
-            this.bsiRecordsCount = new DevExpress.XtraBars.BarStaticItem();
-            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
-            this._cbbGroup = new System.Windows.Forms.ComboBox();
-            this._cbbSize = new System.Windows.Forms.ComboBox();
-            this._cbbColor = new System.Windows.Forms.ComboBox();
             this._cbbProduct = new System.Windows.Forms.ComboBox();
+            this._cbbColor = new System.Windows.Forms.ComboBox();
+            this._cbbSize = new System.Windows.Forms.ComboBox();
+            this._cbbGroup = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this._txtTotalPrice = new DevExpress.XtraEditors.TextEdit();
+            this._txtQuantity = new DevExpress.XtraEditors.TextEdit();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bsiRecordsCount = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._txtQuantity.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._txtTotalPrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             this.splitContainerControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._txtTotalPrice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._txtQuantity.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -79,10 +79,24 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.label2);
             this.splitContainerControl1.Panel2.Controls.Add(this.label1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1134, 684);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1036, 684);
             this.splitContainerControl1.SplitterPosition = 645;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // splitContainerControl2
+            // 
+            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl2.Horizontal = false;
+            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl2.Name = "splitContainerControl2";
+            this.splitContainerControl2.Panel1.Controls.Add(this.gridControl1);
+            this.splitContainerControl2.Panel1.Text = "Panel1";
+            this.splitContainerControl2.Panel2.Text = "Panel2";
+            this.splitContainerControl2.Size = new System.Drawing.Size(645, 684);
+            this.splitContainerControl2.SplitterPosition = 638;
+            this.splitContainerControl2.TabIndex = 0;
+            this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // gridControl1
             // 
@@ -100,82 +114,39 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
-            // label1
+            // _cbbProduct
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(207, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Add Order";
+            this._cbbProduct.FormattingEnabled = true;
+            this._cbbProduct.Location = new System.Drawing.Point(126, 96);
+            this._cbbProduct.Name = "_cbbProduct";
+            this._cbbProduct.Size = new System.Drawing.Size(194, 21);
+            this._cbbProduct.TabIndex = 17;
+            this._cbbProduct.SelectedIndexChanged += new System.EventHandler(this._cbbProduct_SelectedIndexChanged);
             // 
-            // label2
+            // _cbbColor
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 70);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Product Group";
+            this._cbbColor.FormattingEnabled = true;
+            this._cbbColor.Location = new System.Drawing.Point(126, 126);
+            this._cbbColor.Name = "_cbbColor";
+            this._cbbColor.Size = new System.Drawing.Size(194, 21);
+            this._cbbColor.TabIndex = 16;
             // 
-            // label3
+            // _cbbSize
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 99);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Product";
+            this._cbbSize.FormattingEnabled = true;
+            this._cbbSize.Location = new System.Drawing.Point(126, 155);
+            this._cbbSize.Name = "_cbbSize";
+            this._cbbSize.Size = new System.Drawing.Size(194, 21);
+            this._cbbSize.TabIndex = 15;
             // 
-            // label4
+            // _cbbGroup
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 129);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Color";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 158);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Size";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 280);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Quantity";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 305);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Total Price";
-            // 
-            // _txtQuantity
-            // 
-            this._txtQuantity.Location = new System.Drawing.Point(126, 277);
-            this._txtQuantity.Name = "_txtQuantity";
-            this._txtQuantity.Size = new System.Drawing.Size(194, 20);
-            this._txtQuantity.TabIndex = 11;
-            // 
-            // _txtTotalPrice
-            // 
-            this._txtTotalPrice.Location = new System.Drawing.Point(126, 302);
-            this._txtTotalPrice.Name = "_txtTotalPrice";
-            this._txtTotalPrice.Size = new System.Drawing.Size(194, 20);
-            this._txtTotalPrice.TabIndex = 12;
+            this._cbbGroup.FormattingEnabled = true;
+            this._cbbGroup.Location = new System.Drawing.Point(126, 67);
+            this._cbbGroup.Name = "_cbbGroup";
+            this._cbbGroup.Size = new System.Drawing.Size(194, 21);
+            this._cbbGroup.TabIndex = 14;
+            this._cbbGroup.SelectedIndexChanged += new System.EventHandler(this._cbbGroup_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -187,76 +158,105 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // _txtTotalPrice
+            // 
+            this._txtTotalPrice.Location = new System.Drawing.Point(126, 302);
+            this._txtTotalPrice.Name = "_txtTotalPrice";
+            this._txtTotalPrice.Size = new System.Drawing.Size(194, 20);
+            this._txtTotalPrice.TabIndex = 12;
+            // 
+            // _txtQuantity
+            // 
+            this._txtQuantity.Location = new System.Drawing.Point(126, 277);
+            this._txtQuantity.Name = "_txtQuantity";
+            this._txtQuantity.Size = new System.Drawing.Size(194, 20);
+            this._txtQuantity.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(21, 305);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Total Price";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 280);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Quantity";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 158);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(26, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Size";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 129);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(32, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Color";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 99);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Product";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 70);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Product Group";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(207, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Add Order";
+            // 
             // bsiRecordsCount
             // 
             this.bsiRecordsCount.Caption = "RECORDS : 0";
             this.bsiRecordsCount.Id = 15;
             this.bsiRecordsCount.Name = "bsiRecordsCount";
             // 
-            // splitContainerControl2
-            // 
-            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl2.Horizontal = false;
-            this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl2.Name = "splitContainerControl2";
-            this.splitContainerControl2.Panel1.Controls.Add(this.gridControl1);
-            this.splitContainerControl2.Panel1.Text = "Panel1";
-            this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(645, 684);
-            this.splitContainerControl2.SplitterPosition = 638;
-            this.splitContainerControl2.TabIndex = 0;
-            this.splitContainerControl2.Text = "splitContainerControl2";
-            // 
-            // _cbbGroup
-            // 
-            this._cbbGroup.FormattingEnabled = true;
-            this._cbbGroup.Location = new System.Drawing.Point(126, 67);
-            this._cbbGroup.Name = "_cbbGroup";
-            this._cbbGroup.Size = new System.Drawing.Size(194, 21);
-            this._cbbGroup.TabIndex = 14;
-            this._cbbGroup.SelectedIndexChanged += new System.EventHandler(this._cbbGroup_SelectedIndexChanged);
-            // 
-            // _cbbSize
-            // 
-            this._cbbSize.FormattingEnabled = true;
-            this._cbbSize.Location = new System.Drawing.Point(126, 155);
-            this._cbbSize.Name = "_cbbSize";
-            this._cbbSize.Size = new System.Drawing.Size(194, 21);
-            this._cbbSize.TabIndex = 15;
-            // 
-            // _cbbColor
-            // 
-            this._cbbColor.FormattingEnabled = true;
-            this._cbbColor.Location = new System.Drawing.Point(126, 126);
-            this._cbbColor.Name = "_cbbColor";
-            this._cbbColor.Size = new System.Drawing.Size(194, 21);
-            this._cbbColor.TabIndex = 16;
-            // 
-            // _cbbProduct
-            // 
-            this._cbbProduct.FormattingEnabled = true;
-            this._cbbProduct.Location = new System.Drawing.Point(126, 96);
-            this._cbbProduct.Name = "_cbbProduct";
-            this._cbbProduct.Size = new System.Drawing.Size(194, 21);
-            this._cbbProduct.TabIndex = 17;
-            this._cbbProduct.SelectedIndexChanged += new System.EventHandler(this._cbbProduct_SelectedIndexChanged);
-            // 
             // InputOrderDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 684);
+            this.ClientSize = new System.Drawing.Size(1036, 684);
             this.Controls.Add(this.splitContainerControl1);
             this.Name = "InputOrderDialog";
             this.Text = "InputOrderDialog";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._txtQuantity.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._txtTotalPrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._txtTotalPrice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._txtQuantity.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

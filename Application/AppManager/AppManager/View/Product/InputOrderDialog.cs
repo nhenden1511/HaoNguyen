@@ -12,6 +12,7 @@ using AppManager.Util;
 using AppManager.Entity;
 using IProduct = AppManager.Entity.Product;
 using AppManager.Repository;
+using DevExpress.XtraEditors.Controls;
 
 namespace AppManager.View.Product
 {
@@ -48,7 +49,15 @@ namespace AppManager.View.Product
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var groupId = _currentListGroups.Where(p => p.Name.Contains(_cbbGroup.SelectedItem.ToString())).Select(m => m.Id).FirstOrDefault();
+            var productId = _currentListProduct.Where(p => p.Name.Contains(_cbbProduct.SelectedItem.ToString())).Select(m => m.Id).FirstOrDefault();
+            var colorId = colors.Where(p => p.Name.Contains(_cbbSize.SelectedItem.ToString())).Select(m => m.Id).FirstOrDefault();
+            var sizeId = sizes.Where(p => p.Name.Contains(_cbbColor.SelectedItem.ToString())).Select(m => m.Id).FirstOrDefault();
 
+            var quantity = int.Parse(_txtQuantity.Text);
+            var price = int.Parse(_txtTotalPrice.Text);
+
+            var order = new InputOrder(groupId, productId, colorId, sizeId, quantity, price);
         }
 
         private void _cbbGroup_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,9 +80,10 @@ namespace AppManager.View.Product
         {
             if (_currentProductGroup != null)
             {
-                var colorSizeMap = GroupPropertiesMapRepository.Instance.GetAllGroupMapPropertiesId(_currentProduct.GroupId);
+                var colorSizeMap = GroupPropertiesMapRepository.Instance.GetAllGroupMapPropertiesId(_currentProduct != null? _currentProduct.GroupId: 0);
 
                 var color = colors.Where(p => colorSizeMap.Contains(p.Id)).ToList();
+                _cbbColor.Items.Clear();
                 if (color.Count > 0)
                 {
                     foreach (var item in color)
@@ -84,6 +94,7 @@ namespace AppManager.View.Product
                 }
 
                 var size = sizes.Where(p => colorSizeMap.Contains(p.Id)).ToList();
+                _cbbSize.Items.Clear();
                 if (size.Count > 0)
                 {
                     foreach (var item in size)
