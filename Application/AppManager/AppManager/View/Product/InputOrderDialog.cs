@@ -12,6 +12,7 @@ using AppManager.Util;
 using AppManager.Entity;
 using IProduct = AppManager.Entity.Product;
 using AppManager.Repository;
+using DevExpress.XtraEditors.Controls;
 using AppManager.Model;
 using System.Globalization;
 
@@ -58,13 +59,14 @@ namespace AppManager.View.Product
             _txtSum.Text = "0.000";
             _txtSum.Enabled = false;
             _orderId = orderId;
-            if(_orderId != 0)
+            if (_orderId != 0)
             {
                 _btnFinish.Enabled = false;
                 button1.Enabled = false;
                 var order = OrderInputTotalRepository.Instance.GetById(_orderId);
                 _txtName.Text = order.OrderName;
                 _txtSum.Text = order.TotalPrice.ToCurrency();
+
 
                 var items = OrderInputItemRepository.Instance.GetByOrderId(orderId);
                 foreach (var item in items)
@@ -115,7 +117,7 @@ namespace AppManager.View.Product
         {
             if (_currentProductGroup != null)
             {
-                var colorSizeMap = GroupPropertiesMapRepository.Instance.GetAllGroupMapPropertiesId(_currentProduct.GroupId);
+                var colorSizeMap = GroupPropertiesMapRepository.Instance.GetAllGroupMapPropertiesId(_currentProduct != null? _currentProduct.GroupId: 0);
 
                 var color = _allColors.Where(p => colorSizeMap.Contains(p.Id)).ToList();
                 _cbbColor.Items.Clear();

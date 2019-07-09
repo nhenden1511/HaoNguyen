@@ -109,6 +109,7 @@
     <Compile Include="Entity\GroupPropertiesMap.cs" />
     <Compile Include="Entity\ProductSale.cs" />
     <Compile Include="Entity\OrderInputTotal.cs" />
+    <Compile Include="Entity\InputOrder.cs" />
     <Compile Include="Entity\OrderInputItem.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\ProductProperties.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Repository\Base\IBaseRepository.cs" />
     <Compile Include="Repository\ProductSaleRepository.cs" />
     <Compile Include="Repository\OrderInputTotalRepository.cs" />
+    <Compile Include="Repository\InputOrderRepository.cs" />
     <Compile Include="Repository\OrderInputItemRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\GroupPropertiesMapRepository.cs" />
