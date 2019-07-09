@@ -72,11 +72,13 @@
             // _gridProductGroup
             // 
             this._gridProductGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._gridProductGroup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridProductGroup.Location = new System.Drawing.Point(0, 0);
             this._gridProductGroup.MainView = this.gridView;
+            this._gridProductGroup.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridProductGroup.MenuManager = this.ribbonControl;
             this._gridProductGroup.Name = "_gridProductGroup";
-            this._gridProductGroup.Size = new System.Drawing.Size(462, 546);
+            this._gridProductGroup.Size = new System.Drawing.Size(926, 1040);
             this._gridProductGroup.TabIndex = 2;
             this._gridProductGroup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -121,13 +123,14 @@
             this.bbiDelete,
             this.bbiRefresh});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ribbonControl.MaxItemId = 20;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(1048, 143);
+            this.ribbonControl.Size = new System.Drawing.Size(2096, 282);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -146,7 +149,7 @@
             // 
             // bbiNew
             // 
-            this.bbiNew.Caption = "New";
+            this.bbiNew.Caption = "Thêm Mới";
             this.bbiNew.Id = 16;
             this.bbiNew.ImageOptions.ImageUri.Uri = "New";
             this.bbiNew.Name = "bbiNew";
@@ -180,7 +183,7 @@
             this.ribbonPageGroup2});
             this.ribbonPage1.MergeOrder = 0;
             this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Home";
+            this.ribbonPage1.Text = "Thêm Mới Sản Phẩm";
             // 
             // ribbonPageGroup1
             // 
@@ -204,15 +207,17 @@
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 721);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1384);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1048, 31);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(2096, 62);
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 143);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 282);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
@@ -220,8 +225,8 @@
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl3);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1048, 578);
-            this.splitContainerControl1.SplitterPosition = 466;
+            this.splitContainerControl1.Size = new System.Drawing.Size(2096, 1102);
+            this.splitContainerControl1.SplitterPosition = 932;
             this.splitContainerControl1.TabIndex = 4;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -230,20 +235,22 @@
             this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl2.Horizontal = false;
             this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerControl2.Name = "splitContainerControl2";
             this.splitContainerControl2.Panel1.Controls.Add(this.searchControl1);
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this._gridProductGroup);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(462, 574);
-            this.splitContainerControl2.SplitterPosition = 23;
+            this.splitContainerControl2.Size = new System.Drawing.Size(926, 1096);
+            this.splitContainerControl2.SplitterPosition = 46;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // searchControl1
             // 
             this.searchControl1.Client = this._gridProductGroup;
-            this.searchControl1.Location = new System.Drawing.Point(0, 3);
+            this.searchControl1.Location = new System.Drawing.Point(0, 6);
+            this.searchControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.searchControl1.MenuManager = this.ribbonControl;
             this.searchControl1.Name = "searchControl1";
             this.searchControl1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -252,7 +259,7 @@
             this.searchControl1.Properties.Client = this._gridProductGroup;
             this.searchControl1.Properties.FindDelay = 100;
             this.searchControl1.Properties.ShowDefaultButtonsMode = DevExpress.XtraEditors.Repository.ShowDefaultButtonsMode.AutoChangeSearchToClear;
-            this.searchControl1.Size = new System.Drawing.Size(462, 20);
+            this.searchControl1.Size = new System.Drawing.Size(924, 34);
             this.searchControl1.TabIndex = 0;
             // 
             // splitContainerControl3
@@ -260,20 +267,22 @@
             this.splitContainerControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl3.Horizontal = false;
             this.splitContainerControl3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerControl3.Name = "splitContainerControl3";
             this.splitContainerControl3.Panel1.Controls.Add(this.searchControl2);
             this.splitContainerControl3.Panel1.Text = "Panel1";
             this.splitContainerControl3.Panel2.Controls.Add(this._gridProduct);
             this.splitContainerControl3.Panel2.Text = "Panel2";
-            this.splitContainerControl3.Size = new System.Drawing.Size(573, 574);
-            this.splitContainerControl3.SplitterPosition = 22;
+            this.splitContainerControl3.Size = new System.Drawing.Size(1148, 1096);
+            this.splitContainerControl3.SplitterPosition = 44;
             this.splitContainerControl3.TabIndex = 1;
             this.splitContainerControl3.Text = "splitContainerControl3";
             // 
             // searchControl2
             // 
             this.searchControl2.Client = this._gridProduct;
-            this.searchControl2.Location = new System.Drawing.Point(3, 3);
+            this.searchControl2.Location = new System.Drawing.Point(6, 6);
+            this.searchControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.searchControl2.MenuManager = this.ribbonControl;
             this.searchControl2.Name = "searchControl2";
             this.searchControl2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -281,17 +290,19 @@
             new DevExpress.XtraEditors.Repository.SearchButton()});
             this.searchControl2.Properties.Client = this._gridProduct;
             this.searchControl2.Properties.FindDelay = 100;
-            this.searchControl2.Size = new System.Drawing.Size(567, 20);
+            this.searchControl2.Size = new System.Drawing.Size(1134, 34);
             this.searchControl2.TabIndex = 0;
             // 
             // _gridProduct
             // 
             this._gridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._gridProduct.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridProduct.Location = new System.Drawing.Point(0, 0);
             this._gridProduct.MainView = this.gridView1;
+            this._gridProduct.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridProduct.MenuManager = this.ribbonControl;
             this._gridProduct.Name = "_gridProduct";
-            this._gridProduct.Size = new System.Drawing.Size(573, 547);
+            this._gridProduct.Size = new System.Drawing.Size(1148, 1042);
             this._gridProduct.TabIndex = 0;
             this._gridProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -346,12 +357,13 @@
             // 
             // ProductDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 752);
+            this.ClientSize = new System.Drawing.Size(2096, 1446);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "ProductDialog";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;

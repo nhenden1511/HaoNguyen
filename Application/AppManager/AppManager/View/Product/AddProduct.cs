@@ -13,6 +13,7 @@ using AppManager.Repository;
 using DevExpress.XtraEditors.Controls;
 using System.Collections.ObjectModel;
 using IProduct = AppManager.Entity.Product;
+using AppManager.Util;
 
 namespace AppManager.View.Product
 {
@@ -32,6 +33,7 @@ namespace AppManager.View.Product
                 _cbbGroup.Items.Add(item.Name);
             }
             _cbbGroup.SelectedIndex = _groups.IndexOf(_currentProductGroup);
+            _txtPrice.Text = "0.000";
         }
 
         private void _btnAdd_Click(object sender, EventArgs e)
@@ -41,8 +43,7 @@ namespace AppManager.View.Product
                 var name = _txtProductName.Text;
                 var groupId = _currentProductGroup.Id;
                 var price = int.Parse(_txtPrice.Text);
-                var orderPrice = int.Parse(_txtOrderPrice.Text);
-                var product = new IProduct(groupId, name, price, orderPrice);
+                var product = new IProduct(groupId, name, price);
                 try
                 {
                     ProductRepository.Instance.Insert(product);
@@ -65,6 +66,21 @@ namespace AppManager.View.Product
        {
             var cbb = sender as System.Windows.Forms.ComboBox;
             _currentProductGroup = _groups.ElementAtOrDefault(cbb.SelectedIndex);
+        }
+
+        private void _txtPrice_TextChanged_1(object sender, EventArgs e)
+        {
+            _txtPrice.ToCurrency();
+        }
+
+        private void _txtPrice_Enter(object sender, EventArgs e)
+        {
+            _txtPrice.Select(_txtPrice.Text.Length - 4, 0);
+        }
+
+        private void _txtPrice_Click(object sender, EventArgs e)
+        {
+            _txtPrice.Select(_txtPrice.Text.Length - 4, 0);
         }
     }
 }

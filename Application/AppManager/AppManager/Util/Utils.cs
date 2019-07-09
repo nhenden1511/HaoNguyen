@@ -7,8 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TextEdit = DevExpress.XtraEditors.TextEdit;
 
 namespace AppManager.Util
 {
@@ -29,6 +31,7 @@ namespace AppManager.Util
         public static IList<ProductGroup> LoadGroupToCBB(this ComboBox combobox)
         {
             var _groups = ProductGroupRepository.Instance.GetAll();
+            combobox.Items.Clear();
 
             if (_groups.Count > 0)
             {
@@ -44,7 +47,7 @@ namespace AppManager.Util
         public static IList<Product> LoadProductToCBB(this ComboBox combobox, long groupId)
         {
             var products = ProductRepository.Instance.GetProductsByGroup(groupId);
-
+            combobox.Items.Clear();
             if (products.Count > 0)
             {
                 foreach (var item in products)
@@ -54,6 +57,98 @@ namespace AppManager.Util
                 combobox.SelectedIndex = 0;
             }
             return products;
+        }
+
+        public static string ToCurrency(this TextBox _txtSellPrice, string currency = "")
+        {
+            long price = 0;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(currency))
+                    price = Convert.ToInt64(currency.Replace(".", ""));
+                else
+                    price = Convert.ToInt64(_txtSellPrice.Text.Replace(".", ""));
+            }
+            catch (Exception ex)
+            {
+                var txt = Regex.Replace(_txtSellPrice.Text, "[^0-9.]", "");
+                if(!string.IsNullOrWhiteSpace(txt))
+                    price = Convert.ToInt64(txt.Replace(".", ""));
+            }
+            
+
+            var strPrice = price.ToString();
+            var resuilt = "";
+
+            if (strPrice.Length <= 3)
+                strPrice += "000";
+            var n = strPrice.Length;
+            while (n > 0)
+            {
+                if (n > 3)
+                {
+                    resuilt = "." + strPrice.Substring(n - 3) + resuilt;
+                    strPrice = strPrice.Remove(n - 3, 3);
+                }
+                else
+                {
+                    resuilt = strPrice + resuilt;
+                }
+                n = n - 3;
+            }
+            _txtSellPrice.Text = resuilt;
+            _txtSellPrice.Select(resuilt.Length - 4, 0);
+            return resuilt;
+        }
+
+        public static string ToCurrency(this int price)
+        {
+            var strPrice = price.ToString();
+            var resuilt = "";
+
+            if (strPrice.Length <= 3)
+                strPrice += "000";
+            var n = strPrice.Length;
+            while (n > 0)
+            {
+                if (n > 3)
+                {
+                    resuilt = "." + strPrice.Substring(n - 3) + resuilt;
+                    strPrice = strPrice.Remove(n - 3, 3);
+                }
+                else
+                {
+                    resuilt = strPrice + resuilt;
+                }
+                n = n - 3;
+            }
+            return resuilt;
+        }
+
+        public static Int32 ToPrice(this TextBox price)
+        {
+            return Convert.ToInt32(price.Text.Replace(".", ""));
+        }
+        public static Int32 ToPrice(this string price)
+        {
+            return Convert.ToInt32(price.Replace(".", ""));
+        }
+
+        public static Int32 ToNumber(this TextBox number)
+        {
+            if (!string.IsNullOrWhiteSpace(number.Text))
+            {
+                try {
+                    return Convert.ToInt32(number.Text);
+                }
+                catch (Exception ex){}
+            }
+            return 0;
+        }
+
+        public static bool IsNull(this TextBox price)
+        {
+            return string.IsNullOrWhiteSpace(price.Text);
         }
     }
 

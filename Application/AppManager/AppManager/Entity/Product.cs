@@ -18,16 +18,14 @@ namespace AppManager.Entity
         public long ProductCode { get; set; }
         public string Image { get; set; }
         public int Price { get; set; }
-        public int OrderPrice { get; set; }
         public long GroupId { get; set; }
 
-        public Product(long groupId, string name, int price, int orderPrice = 0)
+        public Product(long groupId, string name, int price)
         {
             GroupId = groupId;
             Name = name;
             Price = price;
             ProductCode = Identify.Id;
-            OrderPrice = orderPrice != 0 ? orderPrice : price;
         }
     }
 }

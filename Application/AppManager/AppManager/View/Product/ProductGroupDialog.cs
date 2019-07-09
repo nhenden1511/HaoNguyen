@@ -49,6 +49,8 @@ namespace AppManager.View.Product
             var props = ProductPropertiesRepository.Instance.GetAll();
             colors = props.Where(p => p.Type == ProductType.Color).ToList();
             sizes = props.Where(p => p.Type == ProductType.Size).ToList();
+
+            gridView_FocusedRowChanged(null, null);
         }
 
         void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
@@ -61,6 +63,17 @@ namespace AppManager.View.Product
             var dialog = new AddGroupDialog();
             var result = dialog.ShowDialog();
             if(result == DialogResult.Yes)
+            {
+                ReloadGroup();
+            }
+        }
+
+        private void bbiEdit_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (_currentGroup == null) return;
+            var dialog = new AddGroupDialog(_currentGroup);
+            var result = dialog.ShowDialog();
+            if (result == DialogResult.Yes)
             {
                 ReloadGroup();
             }
@@ -102,6 +115,7 @@ namespace AppManager.View.Product
 
         private void gridView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
+            if (_groups == null) return;
             var col = _gridGroup.MainView as ColumnView;
 
             _currentGroup = _groups.Where(p => p.Id == ((long)col.GetFocusedRowCellValue("Id"))).FirstOrDefault();
@@ -124,6 +138,21 @@ namespace AppManager.View.Product
             BindingList<ProductGroup> dataSource = new BindingList<ProductGroup>(_groups);
             _gridGroup.DataSource = dataSource;
             bsiRecordsCount.Caption = "Total Groups : " + dataSource.Count;
+        }
+
+        private void bbiDelete_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (_currentGroup == null) return;
+
+            var confirmResult = MessageBox.Show("Bạn có muốn xóa loại sản phẩm này ??",
+                                     "Xác Nhận Xóa!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                ProductGroupRepository.Instance.Delete(_currentGroup);
+                _currentGroup = _groups.FirstOrDefault();
+                ReloadGroup();
+            }
         }
     }
 }

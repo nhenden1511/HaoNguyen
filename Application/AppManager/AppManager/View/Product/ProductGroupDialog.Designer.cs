@@ -46,9 +46,9 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
+            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
             this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
@@ -61,7 +61,6 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this._itemColorClick = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.searchControl3 = new DevExpress.XtraEditors.SearchControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl5 = new DevExpress.XtraEditors.SplitContainerControl();
             this.searchControl4 = new DevExpress.XtraEditors.SearchControl();
@@ -92,7 +91,6 @@
             ((System.ComponentModel.ISupportInitialize)(this._gridColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._itemColorClick)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchControl3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl5)).BeginInit();
@@ -114,15 +112,17 @@
             this._gridGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this._gridGroup.EmbeddedNavigator.AccessibleDescription = "222";
             this._gridGroup.EmbeddedNavigator.AccessibleName = "222";
+            this._gridGroup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridGroup.EmbeddedNavigator.Text = "222";
             this._gridGroup.EmbeddedNavigator.TextLocation = DevExpress.XtraEditors.NavigatorButtonsTextLocation.End;
             this._gridGroup.Location = new System.Drawing.Point(0, 0);
             this._gridGroup.MainView = this.gridView;
+            this._gridGroup.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridGroup.MenuManager = this.ribbonControl;
             this._gridGroup.Name = "_gridGroup";
             this._gridGroup.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemToggleSwitch1});
-            this._gridGroup.Size = new System.Drawing.Size(461, 526);
+            this._gridGroup.Size = new System.Drawing.Size(924, 1001);
             this._gridGroup.TabIndex = 2;
             this._gridGroup.TabStop = false;
             this._gridGroup.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -172,14 +172,15 @@
             this._btnAddColor,
             this._btnAddSize});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControl.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ribbonControl.MaxItemId = 22;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(1246, 143);
-            this.ribbonControl.StatusBar = this.ribbonStatusBar1;
+            this.ribbonControl.Size = new System.Drawing.Size(2492, 282);
+            this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
             // bbiPrintPreview
@@ -198,7 +199,7 @@
             // 
             // bbiNew
             // 
-            this.bbiNew.Caption = "New";
+            this.bbiNew.Caption = "Thêm Mới Nhóm";
             this.bbiNew.Id = 16;
             this.bbiNew.ImageOptions.ImageUri.Uri = "New";
             this.bbiNew.Name = "bbiNew";
@@ -206,17 +207,19 @@
             // 
             // bbiEdit
             // 
-            this.bbiEdit.Caption = "Edit";
+            this.bbiEdit.Caption = "Sửa Nhóm";
             this.bbiEdit.Id = 17;
             this.bbiEdit.ImageOptions.ImageUri.Uri = "Edit";
             this.bbiEdit.Name = "bbiEdit";
+            this.bbiEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiEdit_ItemClick);
             // 
             // bbiDelete
             // 
-            this.bbiDelete.Caption = "Delete";
+            this.bbiDelete.Caption = "Xóa Nhóm";
             this.bbiDelete.Id = 18;
             this.bbiDelete.ImageOptions.ImageUri.Uri = "Delete";
             this.bbiDelete.Name = "bbiDelete";
+            this.bbiDelete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiDelete_ItemClick);
             // 
             // bbiRefresh
             // 
@@ -227,7 +230,7 @@
             // 
             // _btnAddColor
             // 
-            this._btnAddColor.Caption = "Add Color";
+            this._btnAddColor.Caption = "Thêm Màu";
             this._btnAddColor.Id = 20;
             this._btnAddColor.ImageOptions.ImageUri.Uri = "AddItem";
             this._btnAddColor.Name = "_btnAddColor";
@@ -237,7 +240,7 @@
             // 
             // _btnAddSize
             // 
-            this._btnAddSize.Caption = "Add Size";
+            this._btnAddSize.Caption = "Thêm Size";
             this._btnAddSize.Id = 21;
             this._btnAddSize.ImageOptions.ImageUri.Uri = "AddItem";
             this._btnAddSize.Name = "_btnAddSize";
@@ -286,13 +289,13 @@
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "Size";
             // 
-            // ribbonStatusBar
+            // ribbonStatusBar1
             // 
-            this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 730);
-            this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1246, 31);
+            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 1053);
+            this.ribbonStatusBar1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
+            this.ribbonStatusBar1.Ribbon = this.ribbonControl;
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(924, 54);
             // 
             // repositoryItemToggleSwitch1
             // 
@@ -301,12 +304,14 @@
             this.repositoryItemToggleSwitch1.OffText = "Off";
             this.repositoryItemToggleSwitch1.OnText = "On";
             // 
-            // ribbonStatusBar1
+            // ribbonStatusBar
             // 
-            this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 552);
-            this.ribbonStatusBar1.Name = "ribbonStatusBar1";
-            this.ribbonStatusBar1.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(461, 27);
+            this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1401);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ribbonStatusBar.Name = "ribbonStatusBar";
+            this.ribbonStatusBar.Ribbon = this.ribbonControl;
+            this.ribbonStatusBar.Size = new System.Drawing.Size(2492, 62);
             // 
             // splitContainerControl1
             // 
@@ -315,7 +320,8 @@
             this.splitContainerControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl1.ButtonInterval = 1;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 143);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 282);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl3);
@@ -324,8 +330,8 @@
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1246, 587);
-            this.splitContainerControl1.SplitterPosition = 465;
+            this.splitContainerControl1.Size = new System.Drawing.Size(2492, 1119);
+            this.splitContainerControl1.SplitterPosition = 930;
             this.splitContainerControl1.TabIndex = 13;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -334,13 +340,14 @@
             this.splitContainerControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl3.Horizontal = false;
             this.splitContainerControl3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerControl3.Name = "splitContainerControl3";
             this.splitContainerControl3.Panel1.Controls.Add(this.searchControl1);
             this.splitContainerControl3.Panel1.Text = "Panel1";
             this.splitContainerControl3.Panel2.Controls.Add(this._gridGroup);
             this.splitContainerControl3.Panel2.Text = "Panel2";
-            this.splitContainerControl3.Size = new System.Drawing.Size(461, 552);
-            this.splitContainerControl3.SplitterPosition = 21;
+            this.splitContainerControl3.Size = new System.Drawing.Size(924, 1053);
+            this.splitContainerControl3.SplitterPosition = 42;
             this.splitContainerControl3.TabIndex = 4;
             this.splitContainerControl3.Text = "splitContainerControl3";
             // 
@@ -349,6 +356,7 @@
             this.searchControl1.Client = this._gridGroup;
             this.searchControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.searchControl1.Location = new System.Drawing.Point(0, 0);
+            this.searchControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.searchControl1.MenuManager = this.ribbonControl;
             this.searchControl1.Name = "searchControl1";
             this.searchControl1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -359,13 +367,14 @@
             this.searchControl1.Properties.Client = this._gridGroup;
             this.searchControl1.Properties.FindDelay = 100;
             this.searchControl1.Properties.ShowDefaultButtonsMode = DevExpress.XtraEditors.Repository.ShowDefaultButtonsMode.AutoChangeSearchToClear;
-            this.searchControl1.Size = new System.Drawing.Size(461, 22);
+            this.searchControl1.Size = new System.Drawing.Size(924, 38);
             this.searchControl1.TabIndex = 0;
             // 
             // splitContainerControl2
             // 
             this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerControl2.Name = "splitContainerControl2";
             this.splitContainerControl2.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl2.Panel1.Controls.Add(this.groupControl1);
@@ -373,8 +382,8 @@
             this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
             this.splitContainerControl2.Panel2.Controls.Add(this.groupControl2);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(768, 579);
-            this.splitContainerControl2.SplitterPosition = 378;
+            this.splitContainerControl2.Size = new System.Drawing.Size(1540, 1107);
+            this.splitContainerControl2.SplitterPosition = 756;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
@@ -383,8 +392,9 @@
             this.groupControl1.Controls.Add(this.splitContainerControl4);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(374, 575);
+            this.groupControl1.Size = new System.Drawing.Size(750, 1101);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Select Color";
             // 
@@ -392,22 +402,23 @@
             // 
             this.splitContainerControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl4.Horizontal = false;
-            this.splitContainerControl4.Location = new System.Drawing.Point(2, 20);
+            this.splitContainerControl4.Location = new System.Drawing.Point(3, 40);
+            this.splitContainerControl4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerControl4.Name = "splitContainerControl4";
             this.splitContainerControl4.Panel1.Controls.Add(this._searchColor);
             this.splitContainerControl4.Panel1.Text = "Panel1";
-            this.splitContainerControl4.Panel2.Controls.Add(this.searchControl3);
             this.splitContainerControl4.Panel2.Controls.Add(this._gridColor);
             this.splitContainerControl4.Panel2.Text = "Panel2";
-            this.splitContainerControl4.Size = new System.Drawing.Size(370, 553);
-            this.splitContainerControl4.SplitterPosition = 21;
+            this.splitContainerControl4.Size = new System.Drawing.Size(744, 1058);
+            this.splitContainerControl4.SplitterPosition = 42;
             this.splitContainerControl4.TabIndex = 0;
             this.splitContainerControl4.Text = "splitContainerControl4";
             // 
             // _searchColor
             // 
             this._searchColor.Client = this._gridColor;
-            this._searchColor.Location = new System.Drawing.Point(0, 1);
+            this._searchColor.Location = new System.Drawing.Point(0, 2);
+            this._searchColor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._searchColor.MenuManager = this.ribbonControl;
             this._searchColor.Name = "_searchColor";
             this._searchColor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -416,19 +427,21 @@
             this._searchColor.Properties.Client = this._gridColor;
             this._searchColor.Properties.FindDelay = 100;
             this._searchColor.Properties.ShowDefaultButtonsMode = DevExpress.XtraEditors.Repository.ShowDefaultButtonsMode.AutoChangeSearchToClear;
-            this._searchColor.Size = new System.Drawing.Size(367, 20);
+            this._searchColor.Size = new System.Drawing.Size(734, 34);
             this._searchColor.TabIndex = 0;
             // 
             // _gridColor
             // 
             this._gridColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._gridColor.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridColor.Location = new System.Drawing.Point(0, 0);
             this._gridColor.MainView = this.gridView1;
+            this._gridColor.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridColor.MenuManager = this.ribbonControl;
             this._gridColor.Name = "_gridColor";
             this._gridColor.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this._itemColorClick});
-            this._gridColor.Size = new System.Drawing.Size(370, 527);
+            this._gridColor.Size = new System.Drawing.Size(744, 1006);
             this._gridColor.TabIndex = 0;
             this._gridColor.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -465,24 +478,14 @@
             this._itemColorClick.Name = "_itemColorClick";
             this._itemColorClick.CheckedChanged += new System.EventHandler(this._itemColorClick_CheckedChanged);
             // 
-            // searchControl3
-            // 
-            this.searchControl3.Location = new System.Drawing.Point(8, 8);
-            this.searchControl3.MenuManager = this.ribbonControl;
-            this.searchControl3.Name = "searchControl3";
-            this.searchControl3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Repository.ClearButton(),
-            new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.searchControl3.Size = new System.Drawing.Size(100, 20);
-            this.searchControl3.TabIndex = 1;
-            // 
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.splitContainerControl5);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl2.Location = new System.Drawing.Point(0, 0);
+            this.groupControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(381, 575);
+            this.groupControl2.Size = new System.Drawing.Size(768, 1101);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "Select Size";
             // 
@@ -490,21 +493,23 @@
             // 
             this.splitContainerControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl5.Horizontal = false;
-            this.splitContainerControl5.Location = new System.Drawing.Point(2, 20);
+            this.splitContainerControl5.Location = new System.Drawing.Point(3, 40);
+            this.splitContainerControl5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerControl5.Name = "splitContainerControl5";
             this.splitContainerControl5.Panel1.Controls.Add(this.searchControl4);
             this.splitContainerControl5.Panel1.Text = "Panel1";
             this.splitContainerControl5.Panel2.Controls.Add(this._gridSize);
             this.splitContainerControl5.Panel2.Text = "Panel2";
-            this.splitContainerControl5.Size = new System.Drawing.Size(377, 553);
-            this.splitContainerControl5.SplitterPosition = 20;
+            this.splitContainerControl5.Size = new System.Drawing.Size(762, 1058);
+            this.splitContainerControl5.SplitterPosition = 40;
             this.splitContainerControl5.TabIndex = 1;
             this.splitContainerControl5.Text = "splitContainerControl5";
             // 
             // searchControl4
             // 
             this.searchControl4.Client = this._gridSize;
-            this.searchControl4.Location = new System.Drawing.Point(3, 1);
+            this.searchControl4.Location = new System.Drawing.Point(6, 2);
+            this.searchControl4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.searchControl4.MenuManager = this.ribbonControl;
             this.searchControl4.Name = "searchControl4";
             this.searchControl4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -513,19 +518,21 @@
             this.searchControl4.Properties.Client = this._gridSize;
             this.searchControl4.Properties.FindDelay = 100;
             this.searchControl4.Properties.ShowDefaultButtonsMode = DevExpress.XtraEditors.Repository.ShowDefaultButtonsMode.AutoChangeSearchToClear;
-            this.searchControl4.Size = new System.Drawing.Size(374, 20);
+            this.searchControl4.Size = new System.Drawing.Size(748, 34);
             this.searchControl4.TabIndex = 0;
             // 
             // _gridSize
             // 
             this._gridSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._gridSize.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridSize.Location = new System.Drawing.Point(0, 0);
             this._gridSize.MainView = this.gridView2;
+            this._gridSize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this._gridSize.MenuManager = this.ribbonControl;
             this._gridSize.Name = "_gridSize";
             this._gridSize.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this._itemSizeSelected});
-            this._gridSize.Size = new System.Drawing.Size(377, 528);
+            this._gridSize.Size = new System.Drawing.Size(762, 1008);
             this._gridSize.TabIndex = 0;
             this._gridSize.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -586,12 +593,13 @@
             // 
             // ProductGroupDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 761);
+            this.ClientSize = new System.Drawing.Size(2492, 1463);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "ProductGroupDialog";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
@@ -614,7 +622,6 @@
             ((System.ComponentModel.ISupportInitialize)(this._gridColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._itemColorClick)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchControl3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl5)).EndInit();
@@ -673,7 +680,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn _itemSizeSelect;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit _itemSizeSelected;
         private DevExpress.XtraEditors.SearchControl _searchColor;
-        private DevExpress.XtraEditors.SearchControl searchControl3;
         private DevExpress.XtraEditors.SearchControl searchControl4;
     }
 }

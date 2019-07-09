@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraBars;
 using System.ComponentModel.DataAnnotations;
+using AppManager.Repository;
+using AppManager.Entity;
+using AppManager.Util;
 
 namespace AppManager.View.Product
 {
@@ -19,16 +22,42 @@ namespace AppManager.View.Product
         {
             InitializeComponent();
             //bsiRecordsCount.Caption = "RECORDS : " + dataSource.Count;
+            LoadOrder();
         }
         void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
         {
-            gridControl.ShowRibbonPrintPreview();
+            _gvOrder.ShowRibbonPrintPreview();
         }
 
         private void bbiNew_ItemClick(object sender, ItemClickEventArgs e)
         {
             var dialog = new InputOrderDialog();
-            var result = dialog.ShowDialog();
+            DialogResult result = dialog.ShowDialog();
+            if(result == DialogResult.Yes)
+            {
+                LoadOrder();
+            }
+        }
+
+        void LoadOrder()
+        {
+            var orders = OrderInputTotalRepository.Instance.GetAll();
+            BindingList<OrderInputTotal> dataSource = new BindingList<OrderInputTotal>(orders);
+            _gvOrder.DataSource = dataSource;
+            bsiRecordsCount.Caption = "Total Groups : " + dataSource.Count;
+        }
+
+        private void _btnCheckOrder_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var dialog = new CheckAllProduct();
+            dialog.Show();
+        }
+
+        private void _gvOrder_DoubleClick(object sender, EventArgs e)
+        {
+            var orderId = _gvOrder.GetIdFocus();
+            var dialog = new InputOrderDialog(orderId);
+            DialogResult result = dialog.ShowDialog();
         }
     }
 }

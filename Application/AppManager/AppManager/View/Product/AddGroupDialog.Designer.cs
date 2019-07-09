@@ -42,18 +42,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(65, 112);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 25);
+            this.label1.Size = new System.Drawing.Size(193, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Product Group Name";
+            this.label1.Text = "Tên Loại Sản Phẩm";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(65, 172);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(202, 25);
+            this.label2.Size = new System.Drawing.Size(134, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Product Group Code";
+            this.label2.Text = "Mã Tìm Kiếm";
             // 
             // _txtName
             // 
@@ -75,7 +75,7 @@
             this._btnAdd.Name = "_btnAdd";
             this._btnAdd.Size = new System.Drawing.Size(261, 71);
             this._btnAdd.TabIndex = 4;
-            this._btnAdd.Text = "Add Group";
+            this._btnAdd.Text = "Thêm Loại Sản Phẩm";
             this._btnAdd.Click += new System.EventHandler(this._btnAdd_Click);
             // 
             // AddGroupDialog
@@ -89,7 +89,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AddGroupDialog";
-            this.Text = "AddGroupDialog";
+            this.Text = "Thêm Loại Sản Phẩm";
             ((System.ComponentModel.ISupportInitialize)(this._txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._txtCode.Properties)).EndInit();
             this.ResumeLayout(false);
