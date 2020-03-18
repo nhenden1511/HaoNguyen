@@ -22,6 +22,8 @@ namespace AppManager.View.Product
     {
         ProductGroup _currentGroup = new ProductGroup();
         IList<ProductGroup> _groups;
+        IList<IProduct> _currentListProduct = new List<IProduct>();
+        IProduct _currentProduct = new IProduct();
 
         public ProductDialog()
         {
@@ -31,14 +33,15 @@ namespace AppManager.View.Product
             BindingList<ProductGroup> dataSource = new BindingList<ProductGroup>(_groups);
             _gridProductGroup.DataSource = dataSource;
             bsiRecordsCount.Caption = "Total Groups : " + dataSource.Count;
+            
         }
 
         private void gridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
             var groupId = _gridProductGroup.GetIdFocus();
             _currentGroup = _groups.Where(p => p.Id == groupId).FirstOrDefault();
-            var products = ProductRepository.Instance.GetProductsByGroup(groupId);
-            BindingList<IProduct> dataSource = new BindingList<IProduct>(products);
+            _currentListProduct = ProductRepository.Instance.GetProductsByGroup(groupId);
+            BindingList<IProduct> dataSource = new BindingList<IProduct>(_currentListProduct);
             _gridProduct.DataSource = dataSource;
         }
 
@@ -47,7 +50,6 @@ namespace AppManager.View.Product
             var dialog = new AddProduct(_currentGroup);
             var result = dialog.ShowDialog();
             if (result == DialogResult.Yes) Reload();
-
         }
 
         void Reload()
@@ -55,6 +57,19 @@ namespace AppManager.View.Product
             var products = ProductRepository.Instance.GetProductsByGroup(_currentGroup.Id);
             BindingList<IProduct> dataSource = new BindingList<IProduct>(products);
             _gridProduct.DataSource = dataSource;
+        }
+
+        private void gridView1_FocusedRowObjectChanged(object sender, FocusedRowObjectChangedEventArgs e)
+        {
+            var productId = _gridProduct.GetIdFocus();
+            _currentProduct = _currentListProduct.Where(p => p.Id == productId).FirstOrDefault();
+        }
+
+        private void _gridProduct_DoubleClick(object sender, EventArgs e)
+        {
+            var dialog = new AddProduct(_currentGroup, _currentProduct);
+            var result = dialog.ShowDialog();
+            if (result == DialogResult.Yes) Reload();
         }
     }
 }

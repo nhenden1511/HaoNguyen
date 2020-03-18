@@ -35,6 +35,8 @@
             this._cbbGroup = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this._txtPrice = new System.Windows.Forms.TextBox();
+            this._txtPriceProvide = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._txtProductName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +70,7 @@
             // 
             // _btnAdd
             // 
-            this._btnAdd.Location = new System.Drawing.Point(332, 260);
+            this._btnAdd.Location = new System.Drawing.Point(308, 328);
             this._btnAdd.Margin = new System.Windows.Forms.Padding(6);
             this._btnAdd.Name = "_btnAdd";
             this._btnAdd.Size = new System.Drawing.Size(214, 73);
@@ -92,9 +94,9 @@
             this.label3.Location = new System.Drawing.Point(68, 173);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 25);
+            this.label3.Size = new System.Drawing.Size(113, 25);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Giá Bán";
+            this.label3.Text = "Giá Bán Lẻ";
             // 
             // _txtPrice
             // 
@@ -106,11 +108,33 @@
             this._txtPrice.TextChanged += new System.EventHandler(this._txtPrice_TextChanged_1);
             this._txtPrice.Enter += new System.EventHandler(this._txtPrice_Enter);
             // 
+            // _txtPriceProvide
+            // 
+            this._txtPriceProvide.Location = new System.Drawing.Point(284, 230);
+            this._txtPriceProvide.Name = "_txtPriceProvide";
+            this._txtPriceProvide.Size = new System.Drawing.Size(482, 33);
+            this._txtPriceProvide.TabIndex = 9;
+            this._txtPriceProvide.Click += new System.EventHandler(this._txtPriceProvide_Click);
+            this._txtPriceProvide.TextChanged += new System.EventHandler(this._txtPriceProvide_TextChanged);
+            this._txtPriceProvide.Enter += new System.EventHandler(this._txtPriceProvide_Enter);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(68, 233);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(109, 25);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Giá Bán Sỉ";
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(820, 366);
+            this.ClientSize = new System.Drawing.Size(820, 416);
+            this.Controls.Add(this._txtPriceProvide);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this._txtPrice);
             this.Controls.Add(this.label3);
             this.Controls.Add(this._cbbGroup);
@@ -136,5 +160,7 @@
         private System.Windows.Forms.ComboBox _cbbGroup;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox _txtPrice;
+        private System.Windows.Forms.TextBox _txtPriceProvide;
+        private System.Windows.Forms.Label label4;
     }
 }

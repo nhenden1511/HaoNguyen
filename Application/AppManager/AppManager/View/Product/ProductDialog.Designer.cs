@@ -53,7 +53,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.PriceProvide = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this._gridProductGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
@@ -72,10 +72,10 @@
             // _gridProductGroup
             // 
             this._gridProductGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._gridProductGroup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._gridProductGroup.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this._gridProductGroup.Location = new System.Drawing.Point(0, 0);
             this._gridProductGroup.MainView = this.gridView;
-            this._gridProductGroup.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._gridProductGroup.Margin = new System.Windows.Forms.Padding(6);
             this._gridProductGroup.MenuManager = this.ribbonControl;
             this._gridProductGroup.Name = "_gridProductGroup";
             this._gridProductGroup.Size = new System.Drawing.Size(926, 1040);
@@ -123,7 +123,7 @@
             this.bbiDelete,
             this.bbiRefresh});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ribbonControl.Margin = new System.Windows.Forms.Padding(6);
             this.ribbonControl.MaxItemId = 20;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -208,7 +208,7 @@
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.bsiRecordsCount);
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1384);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(6);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
             this.ribbonStatusBar.Size = new System.Drawing.Size(2096, 62);
@@ -217,7 +217,7 @@
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 282);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
@@ -235,7 +235,7 @@
             this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl2.Horizontal = false;
             this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainerControl2.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainerControl2.Name = "splitContainerControl2";
             this.splitContainerControl2.Panel1.Controls.Add(this.searchControl1);
             this.splitContainerControl2.Panel1.Text = "Panel1";
@@ -250,7 +250,7 @@
             // 
             this.searchControl1.Client = this._gridProductGroup;
             this.searchControl1.Location = new System.Drawing.Point(0, 6);
-            this.searchControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.searchControl1.Margin = new System.Windows.Forms.Padding(6);
             this.searchControl1.MenuManager = this.ribbonControl;
             this.searchControl1.Name = "searchControl1";
             this.searchControl1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -267,7 +267,7 @@
             this.splitContainerControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl3.Horizontal = false;
             this.splitContainerControl3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerControl3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainerControl3.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainerControl3.Name = "splitContainerControl3";
             this.splitContainerControl3.Panel1.Controls.Add(this.searchControl2);
             this.splitContainerControl3.Panel1.Text = "Panel1";
@@ -282,7 +282,7 @@
             // 
             this.searchControl2.Client = this._gridProduct;
             this.searchControl2.Location = new System.Drawing.Point(6, 6);
-            this.searchControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.searchControl2.Margin = new System.Windows.Forms.Padding(6);
             this.searchControl2.MenuManager = this.ribbonControl;
             this.searchControl2.Name = "searchControl2";
             this.searchControl2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -296,16 +296,17 @@
             // _gridProduct
             // 
             this._gridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._gridProduct.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._gridProduct.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this._gridProduct.Location = new System.Drawing.Point(0, 0);
             this._gridProduct.MainView = this.gridView1;
-            this._gridProduct.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._gridProduct.Margin = new System.Windows.Forms.Padding(6);
             this._gridProduct.MenuManager = this.ribbonControl;
             this._gridProduct.Name = "_gridProduct";
             this._gridProduct.Size = new System.Drawing.Size(1148, 1042);
             this._gridProduct.TabIndex = 0;
             this._gridProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this._gridProduct.DoubleClick += new System.EventHandler(this._gridProduct_DoubleClick);
             // 
             // gridView1
             // 
@@ -313,47 +314,47 @@
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
-            this.gridColumn6});
+            this.PriceProvide});
             this.gridView1.GridControl = this._gridProduct;
             this.gridView1.Name = "gridView1";
+            this.gridView1.FocusedRowObjectChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventHandler(this.gridView1_FocusedRowObjectChanged);
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "ProductCode";
+            this.gridColumn3.Caption = "Mã Sản Phẩm";
             this.gridColumn3.FieldName = "ProductCode";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.OptionsColumn.ReadOnly = true;
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.VisibleIndex = 1;
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "ProductName";
+            this.gridColumn4.Caption = "Tên Sản Phẩm";
             this.gridColumn4.FieldName = "Name";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 1;
+            this.gridColumn4.VisibleIndex = 2;
             // 
             // gridColumn5
             // 
-            this.gridColumn5.Caption = "Price";
+            this.gridColumn5.Caption = "Giá bán lẻ";
             this.gridColumn5.FieldName = "Price";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 2;
+            this.gridColumn5.VisibleIndex = 3;
             // 
-            // gridColumn6
+            // PriceProvide
             // 
-            this.gridColumn6.Caption = "Order Price";
-            this.gridColumn6.FieldName = "OrderPrice";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 3;
+            this.PriceProvide.Caption = "Giá bán sỉ";
+            this.PriceProvide.FieldName = "PriceProvide";
+            this.PriceProvide.Name = "PriceProvide";
+            this.PriceProvide.Visible = true;
+            this.PriceProvide.VisibleIndex = 3;
             // 
             // ProductDialog
             // 
@@ -363,7 +364,7 @@
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ProductDialog";
             this.Ribbon = this.ribbonControl;
             this.StatusBar = this.ribbonStatusBar;
@@ -411,6 +412,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn PriceProvide;
     }
 }

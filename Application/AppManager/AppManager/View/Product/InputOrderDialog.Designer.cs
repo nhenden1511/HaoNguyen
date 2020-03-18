@@ -40,6 +40,9 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this._btnDelete = new System.Windows.Forms.Button();
+            this._txtSumQuantity = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this._txtName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -63,6 +66,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bsiRecordsCount = new DevExpress.XtraBars.BarStaticItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._btnChange = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
@@ -79,6 +83,10 @@
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            this.splitContainerControl1.Panel2.Controls.Add(this._btnChange);
+            this.splitContainerControl1.Panel2.Controls.Add(this._btnDelete);
+            this.splitContainerControl1.Panel2.Controls.Add(this._txtSumQuantity);
+            this.splitContainerControl1.Panel2.Controls.Add(this.label8);
             this.splitContainerControl1.Panel2.Controls.Add(this._txtName);
             this.splitContainerControl1.Panel2.Controls.Add(this.label11);
             this.splitContainerControl1.Panel2.Controls.Add(this.label10);
@@ -146,6 +154,7 @@
             this.gridColumn6});
             this.gridView1.GridControl = this._gvOrder;
             this.gridView1.Name = "gridView1";
+            this.gridView1.FocusedRowObjectChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventHandler(this.gridView1_FocusedRowObjectChanged);
             // 
             // gridColumn1
             // 
@@ -213,9 +222,37 @@
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 6;
             // 
+            // _btnDelete
+            // 
+            this._btnDelete.Location = new System.Drawing.Point(388, 620);
+            this._btnDelete.Margin = new System.Windows.Forms.Padding(6);
+            this._btnDelete.Name = "_btnDelete";
+            this._btnDelete.Size = new System.Drawing.Size(262, 87);
+            this._btnDelete.TabIndex = 32;
+            this._btnDelete.Text = "Xóa Sản Phẩm";
+            this._btnDelete.UseVisualStyleBackColor = true;
+            this._btnDelete.Click += new System.EventHandler(this._btnDelete_Click);
+            // 
+            // _txtSumQuantity
+            // 
+            this._txtSumQuantity.Location = new System.Drawing.Point(250, 1084);
+            this._txtSumQuantity.Name = "_txtSumQuantity";
+            this._txtSumQuantity.Size = new System.Drawing.Size(386, 33);
+            this._txtSumQuantity.TabIndex = 31;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(42, 1087);
+            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(155, 25);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "Tổng Số Lượng";
+            // 
             // _txtName
             // 
-            this._txtName.Location = new System.Drawing.Point(248, 1016);
+            this._txtName.Location = new System.Drawing.Point(248, 968);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(386, 33);
             this._txtName.TabIndex = 29;
@@ -223,7 +260,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(42, 1019);
+            this.label11.Location = new System.Drawing.Point(42, 971);
             this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(149, 25);
@@ -233,7 +270,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(42, 1078);
+            this.label10.Location = new System.Drawing.Point(42, 1030);
             this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(114, 25);
@@ -242,7 +279,7 @@
             // 
             // _txtSum
             // 
-            this._txtSum.Location = new System.Drawing.Point(248, 1075);
+            this._txtSum.Location = new System.Drawing.Point(248, 1027);
             this._txtSum.Name = "_txtSum";
             this._txtSum.Size = new System.Drawing.Size(386, 33);
             this._txtSum.TabIndex = 26;
@@ -253,6 +290,8 @@
             this._txtQuantity.Name = "_txtQuantity";
             this._txtQuantity.Size = new System.Drawing.Size(386, 33);
             this._txtQuantity.TabIndex = 25;
+            this._txtQuantity.TextChanged += new System.EventHandler(this._txtQuantity_TextChanged);
+            this._txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._txtQuantity_KeyPress);
             // 
             // _txtItemPrice
             // 
@@ -334,7 +373,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(250, 612);
+            this.button1.Location = new System.Drawing.Point(47, 620);
             this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(262, 87);
@@ -425,6 +464,18 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // _btnChange
+            // 
+            this._btnChange.Location = new System.Drawing.Point(219, 752);
+            this._btnChange.Margin = new System.Windows.Forms.Padding(6);
+            this._btnChange.Name = "_btnChange";
+            this._btnChange.Size = new System.Drawing.Size(262, 87);
+            this._btnChange.TabIndex = 33;
+            this._btnChange.Text = "Sửa Sản Phẩm";
+            this._btnChange.UseVisualStyleBackColor = true;
+            this._btnChange.Visible = false;
+            this._btnChange.Click += new System.EventHandler(this._btnChange_Click);
+            // 
             // InputOrderDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -483,5 +534,9 @@
         private System.Windows.Forms.Label label11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private System.Windows.Forms.TextBox _txtSumQuantity;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button _btnDelete;
+        private System.Windows.Forms.Button _btnChange;
     }
 }

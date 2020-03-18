@@ -21,7 +21,8 @@ namespace AppManager.View.Product
     {
         ProductGroup _currentProductGroup;
         IList<ProductGroup> _groups;
-        public AddProduct(ProductGroup productGroup)
+        IProduct _oldProduct;
+        public AddProduct(ProductGroup productGroup, IProduct product = null)
         {
             InitializeComponent();
 
@@ -33,22 +34,48 @@ namespace AppManager.View.Product
                 _cbbGroup.Items.Add(item.Name);
             }
             _cbbGroup.SelectedIndex = _groups.IndexOf(_currentProductGroup);
-            _txtPrice.Text = "0.000";
+
+            _oldProduct = product;
+            if (product != null)
+            {
+                _txtPrice.Text = product.Price.ToCurrency();
+                _txtPriceProvide.Text = product.PriceProvide.ToCurrency();
+                _txtProductName.Text = product.Name;
+                _cbbGroup.Enabled = false;
+                _btnAdd.Text = "Sửa";
+            }
+            else
+            {
+                _txtPrice.Text = "0.000";
+                _txtPriceProvide.Text = "0.000";
+            }
         }
 
         private void _btnAdd_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(_txtProductName.Text) && !string.IsNullOrWhiteSpace(_txtPrice.Text))
             {
-                var name = _txtProductName.Text;
-                var groupId = _currentProductGroup.Id;
-                var price = int.Parse(_txtPrice.Text);
-                var product = new IProduct(groupId, name, price);
                 try
                 {
-                    ProductRepository.Instance.Insert(product);
-                    this.Close();
-                    DialogResult = DialogResult.Yes;
+                    if(_oldProduct == null)
+                    {
+                        var name = _txtProductName.Text;
+                        var groupId = _currentProductGroup.Id;
+                        var price = _txtPrice.Text.ToPrice();
+                        var priceProvide = _txtPriceProvide.Text.ToPrice();
+                        var product = new IProduct(groupId, name, price, priceProvide);
+                        ProductRepository.Instance.Insert(product);
+                        this.Close();
+                        DialogResult = DialogResult.Yes;
+                    }
+                    else
+                    {
+                        _oldProduct.Name = _txtProductName.Text;
+                        _oldProduct.Price = _txtPrice.Text.ToPrice();
+                        _oldProduct.PriceProvide = _txtPriceProvide.Text.ToPrice();
+                        ProductRepository.Instance.Update(_oldProduct);
+                        DialogResult = DialogResult.Yes;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -81,6 +108,21 @@ namespace AppManager.View.Product
         private void _txtPrice_Click(object sender, EventArgs e)
         {
             _txtPrice.Select(_txtPrice.Text.Length - 4, 0);
+        }
+
+        private void _txtPriceProvide_TextChanged(object sender, EventArgs e)
+        {
+            _txtPriceProvide.ToCurrency();
+        }
+
+        private void _txtPriceProvide_Enter(object sender, EventArgs e)
+        {
+            _txtPriceProvide.Select(_txtPrice.Text.Length - 4, 0);
+        }
+
+        private void _txtPriceProvide_Click(object sender, EventArgs e)
+        {
+            _txtPriceProvide.Select(_txtPrice.Text.Length - 4, 0);
         }
     }
 }

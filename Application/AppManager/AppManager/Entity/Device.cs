@@ -13,6 +13,9 @@ namespace AppManager.Entity
 
         }
         public string Name { get; set; }
+
         public bool IsMasterDevice { get; set; }
+
+        public long Money { get; set; }
     }
 }

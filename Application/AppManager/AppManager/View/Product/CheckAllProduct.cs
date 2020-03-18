@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IProduct = AppManager.Entity.Product;
 
 namespace AppManager.View.Product
 {
@@ -20,6 +21,8 @@ namespace AppManager.View.Product
         List<ProductProperties> _allSizes;
         IList<ProductGroup> _groups;
         ProductGroup _currentProductGroup;
+        IList<IProduct> _products;
+
         bool _isCheckAll = true;
 
         public CheckAllProduct()
@@ -42,13 +45,16 @@ namespace AppManager.View.Product
             LoadProduct();
         }
 
-        void LoadProduct()
+        void LoadProduct(long productId = 0)
         {
             List<InputProductModel> models = new List<InputProductModel>();
             IList<ProductSale> products;
             if (!_isCheckAll && _currentProductGroup != null)
             {
-                products = ProductSaleRepository.Instance.GetByGroupId(_currentProductGroup.Id);
+                if (productId == 0)
+                    products = ProductSaleRepository.Instance.GetByGroupId(_currentProductGroup.Id);
+                else
+                    products = ProductSaleRepository.Instance.GetSellProduct(productId);
             }
             else
                 products = ProductSaleRepository.Instance.GetAll().Where(p => p.Quantity > 0).ToList(); ;
@@ -93,6 +99,21 @@ namespace AppManager.View.Product
             {
                 _currentProductGroup = _groups.ElementAtOrDefault(cbb.SelectedIndex);
                 LoadProduct();
+                _products = ProductRepository.Instance.GetProductsByGroup(_currentProductGroup.Id);
+                if(_currentProductGroup != null)
+                {
+                    _products = _cbbProduct.LoadProductToCBB(_currentProductGroup.Id);
+                }
+            }
+        }
+
+        private void _cbbProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var cbb = sender as System.Windows.Forms.ComboBox;
+            if (_products != null)
+            {
+                var product = _products.ElementAtOrDefault(cbb.SelectedIndex);
+                LoadProduct(product.Id);
             }
         }
     }

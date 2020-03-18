@@ -24,8 +24,16 @@ namespace AppManager.Util
     {
         public static long GetIdFocus(this GridControl grid)
         {
-            var col = grid.MainView as ColumnView;
-            return (long)col.GetFocusedRowCellValue("Id");
+            try
+            {
+                var col = grid.MainView as ColumnView;
+                return (long)col.GetFocusedRowCellValue("Id");
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+            
         }
 
         public static IList<ProductGroup> LoadGroupToCBB(this ComboBox combobox)
@@ -57,6 +65,19 @@ namespace AppManager.Util
                 combobox.SelectedIndex = 0;
             }
             return products;
+        }
+
+        public static void LoadProductToCBB(this ComboBox combobox, IList<Product> products)
+        {
+            combobox.Items.Clear();
+            if (products.Count > 0)
+            {
+                foreach (var item in products)
+                {
+                    combobox.Items.Add(item.Name);
+                }
+                combobox.SelectedIndex = 0;
+            }
         }
 
         public static string ToCurrency(this TextBox _txtSellPrice, string currency = "")
@@ -125,12 +146,38 @@ namespace AppManager.Util
             return resuilt;
         }
 
+        public static string ToCurrency(this long price)
+        {
+            var strPrice = price.ToString();
+            var resuilt = "";
+
+            if (strPrice.Length <= 3)
+                strPrice += "000";
+            var n = strPrice.Length;
+            while (n > 0)
+            {
+                if (n > 3)
+                {
+                    resuilt = "." + strPrice.Substring(n - 3) + resuilt;
+                    strPrice = strPrice.Remove(n - 3, 3);
+                }
+                else
+                {
+                    resuilt = strPrice + resuilt;
+                }
+                n = n - 3;
+            }
+            return resuilt;
+        }
+
         public static Int32 ToPrice(this TextBox price)
         {
+            if (string.IsNullOrWhiteSpace(price.Text)) return 0;
             return Convert.ToInt32(price.Text.Replace(".", ""));
         }
         public static Int32 ToPrice(this string price)
         {
+            if (string.IsNullOrWhiteSpace(price)) return 0;
             return Convert.ToInt32(price.Replace(".", ""));
         }
 
@@ -144,6 +191,20 @@ namespace AppManager.Util
                 catch (Exception ex){}
             }
             return 0;
+        }
+
+        public static void SetNumber(this TextBox number, object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
 
         public static bool IsNull(this TextBox price)

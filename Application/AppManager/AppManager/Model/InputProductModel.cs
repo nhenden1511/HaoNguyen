@@ -10,6 +10,7 @@ namespace AppManager.Model
 {
     public class InputProductModel
     {
+        public long Id { get; set; }
         public long GroupId { get; set; }
         public string GroupName { get; set; }
         public long ProductId { get; set; }
@@ -21,6 +22,8 @@ namespace AppManager.Model
         public int Quantity { get; set; }
         public string ItemPrice { get; set; }
         public string TotalPrice { get; set; }
+        public int InputPrice { get; set; }
+        public long ParentId { get; set; }
     }
 
     public static class InputProductModelEmm

@@ -33,7 +33,6 @@ namespace AppManager.Repository
             }
         }
 
-
         public List<ProductSale> GetByGroupId(long groupId)
         {
             lock (DbInitialization.Lockdb)
@@ -43,6 +42,22 @@ namespace AppManager.Repository
                     var productIds = db.Table<Product>().Where(p => p.GroupId == groupId).Select(p => p.Id).ToList();
                     var result = db.Table<ProductSale>().Where(p => productIds.Contains(p.ProductId) && p.Quantity > 0);
                     return result.ToList();
+                }
+            }
+        }
+
+        public List<ProductSale> GetSellProduct(long productId, long colorId = 0)
+        {
+            lock (DbInitialization.Lockdb)
+            {
+                using (var db = NewConnection())
+                {
+                    var result = new List<ProductSale>();
+
+                    if (colorId != 0)
+                        return db.Table<ProductSale>().Where(p => p.ProductId == productId && p.ColorId == colorId && p.Quantity > 0).ToList();
+                    else
+                        return db.Table<ProductSale>().Where(p => p.ProductId == productId && p.Quantity > 0).ToList();
                 }
             }
         }

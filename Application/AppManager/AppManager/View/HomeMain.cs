@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using AppManager.View.Product;
+using AppManager.View.SaleManager;
+using AppManager.Repository;
 
 namespace AppManager.View
 {
@@ -18,6 +20,7 @@ namespace AppManager.View
         public HomeMain()
         {
             InitializeComponent();
+            ModelHelper.CurrentDevice = DeviceRepository.Instance.GetMasterDevice();
         }
 
         private Form CheckForm(Type ftype)
@@ -80,6 +83,36 @@ namespace AppManager.View
             {
                 frm.Activate();
             }
+        }
+
+        private void _btnShopOrder_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var dialog = new OrderSaleDialog();
+            var result = dialog.ShowDialog();
+        }
+
+        private void _btnCheckOrder_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var dialog = new CheckOrderDialog();
+            var result = dialog.ShowDialog();
+        }
+
+        private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var dialog = new DeviceExpenseDialog();
+            var result = dialog.ShowDialog();
+        }
+
+        private void _btnChangeSize_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var dialog = new ChangeSizeDialog();
+            var result = dialog.ShowDialog();
+        }
+
+        private void _btnCheckStore_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var dialog = new CheckAllProduct();
+            dialog.Show();
         }
     }
 }

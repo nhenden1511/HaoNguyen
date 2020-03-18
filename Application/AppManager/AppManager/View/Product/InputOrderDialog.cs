@@ -29,6 +29,7 @@ namespace AppManager.View.Product
         static IProduct _currentProduct;
         IList<IProduct> _currentListProduct;
         IList<InputProductModel> _currentListModel;
+        InputProductModel _currentModel;
         long _orderId;
 
         bool _isItemPrice = false;
@@ -58,36 +59,48 @@ namespace AppManager.View.Product
             _txtTotalPrice.Text = "0.000";
             _txtSum.Text = "0.000";
             _txtSum.Enabled = false;
+            _txtSumQuantity.Enabled = false;
             _orderId = orderId;
             if (_orderId != 0)
             {
-                _btnFinish.Enabled = false;
-                button1.Enabled = false;
-                var order = OrderInputTotalRepository.Instance.GetById(_orderId);
-                _txtName.Text = order.OrderName;
-                _txtSum.Text = order.TotalPrice.ToCurrency();
-
-
-                var items = OrderInputItemRepository.Instance.GetByOrderId(orderId);
-                foreach (var item in items)
-                {
-                    var product = ProductRepository.Instance.GetById(item.ProductId);
-                    var newOrder = new InputProductModel()
-                    {
-                        GroupName = _currentListGroups.Where(p => p.Id == product.GroupId).FirstOrDefault().Name,
-                        ProductId = product.Id,
-                        ProductName = product.Name,
-                        ColorName = _allColors.Where(p => p.Id == item.ColorId).FirstOrDefault().Name,
-                        SizeName = _allSizes.Where(p => p.Id == item.SizeId).FirstOrDefault().Name,
-                        Quantity = item.Quantity,
-                        ItemPrice = item.Price.ToCurrency(),
-                        TotalPrice = (item.Price * item.Quantity).ToCurrency(),
-                    };
-                    _currentListModel.Add(newOrder);
-                }
-                BindingList<InputProductModel> dataSource = new BindingList<InputProductModel>(_currentListModel);
-                _gvOrder.DataSource = dataSource;
+                LoadOldOrder();
             }
+        }
+        void LoadOldOrder()
+        {
+            _btnFinish.Enabled = false;
+            _btnChange.Visible = true;
+            button1.Enabled = false;
+            _btnDelete.Enabled = false;
+            var order = OrderInputTotalRepository.Instance.GetById(_orderId);
+            _txtName.Text = order.OrderName;
+            _txtSum.Text = order.TotalPrice.ToCurrency();
+
+            var items = OrderInputItemRepository.Instance.GetByOrderId(_orderId);
+            foreach (var item in items)
+            {
+                var product = ProductRepository.Instance.GetById(item.ProductId);
+                var newOrder = new InputProductModel()
+                {
+                    Id = item.Id,
+                    GroupName = _currentListGroups.Where(p => p.Id == product.GroupId).FirstOrDefault().Name,
+                    ProductId = product.Id,
+                    ProductName = product.Name,
+                    ColorName = _allColors.Where(p => p.Id == item.ColorId).FirstOrDefault().Name,
+                    SizeName = _allSizes.Where(p => p.Id == item.SizeId).FirstOrDefault().Name,
+                    Quantity = item.Quantity,
+                    ItemPrice = item.Price.ToCurrency(),
+                    TotalPrice = (item.Price * item.Quantity).ToCurrency(),
+                    ColorId = item.ColorId,
+                    SizeId = item.SizeId,
+                    ParentId = item.OrderInputId,
+                };
+                _currentListModel.Add(newOrder);
+            }
+
+            _txtSumQuantity.Text = items.Sum(p => p.Quantity).ToString();
+            BindingList<InputProductModel> dataSource = new BindingList<InputProductModel>(_currentListModel);
+            _gvOrder.DataSource = dataSource;
         }
 
         private void _cbbGroup_SelectedIndexChanged(object sender, EventArgs e)
@@ -160,6 +173,7 @@ namespace AppManager.View.Product
             if (_txtItemPrice.IsNull() || _txtQuantity.IsNull() || _txtTotalPrice.IsNull()) return;
             var newOrder = new InputProductModel()
             {
+                Id = Identify.Id,
                 GroupId = _currentProductGroup.Id,
                 GroupName = _currentProductGroup.Name,
                 ProductId = _currentProduct.Id,
@@ -177,9 +191,8 @@ namespace AppManager.View.Product
             BindingList<InputProductModel> dataSource = new BindingList<InputProductModel>(_currentListModel);
             _gvOrder.DataSource = dataSource;
 
-            _txtItemPrice.Text = "";
-            _txtQuantity.Text = "";
             _txtSum.Text = _currentListModel.Sum(p => p.TotalPrice.ToPrice()).ToCurrency();
+            _txtSumQuantity.Text = _currentListModel.Sum(p => p.Quantity).ToString();
         }
 
         private void _btnFinish_Click(object sender, EventArgs e)
@@ -191,6 +204,8 @@ namespace AppManager.View.Product
 
             var order = _currentListModel.ToListEntity(orderTotal.Id);
             OrderInputItemRepository.Instance.AddListOrder(order);
+
+            ModelHelper.OutputMoney(orderTotal.TotalPrice, _txtName.Text);
             Close();
             DialogResult = DialogResult.Yes;
         }
@@ -232,5 +247,46 @@ namespace AppManager.View.Product
             _txtItemPrice.Select(_txtItemPrice.Text.Length - 4, 0);
         }
         #endregion
+
+        private void _btnDelete_Click(object sender, EventArgs e)
+        {
+            if(_currentModel != null)
+            {
+                _currentListModel.Remove(_currentModel);
+                BindingList<InputProductModel> dataSource = new BindingList<InputProductModel>(_currentListModel);
+                _gvOrder.DataSource = dataSource;
+
+                _txtSum.Text = _currentListModel.Sum(p => p.TotalPrice.ToPrice()).ToCurrency();
+                _txtSumQuantity.Text = _currentListModel.Sum(p => p.Quantity).ToString();
+            }
+        }
+
+        private void _txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _txtQuantity.SetNumber(sender, e);
+        }
+
+        private void _txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            var quantity = _txtQuantity.Text.ToPrice();
+            _txtTotalPrice.Text = (_txtItemPrice.Text.ToPrice() * quantity).ToCurrency();
+        }
+
+        private void gridView1_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
+        {
+            var modelId = _gvOrder.GetIdFocus();
+            _currentModel = _currentListModel.Where(p => p.Id == modelId).FirstOrDefault();
+        }
+
+        private void _btnChange_Click(object sender, EventArgs e)
+        {
+            if (_currentModel == null) return;
+            var dialog = new ChangeOrderProductDialog(_currentModel);
+            var result = dialog.ShowDialog();
+            if(result == DialogResult.Yes)
+            {
+                LoadOldOrder();
+            }
+        }
     }
 }

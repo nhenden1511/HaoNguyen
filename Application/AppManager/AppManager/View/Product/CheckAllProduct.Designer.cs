@@ -39,12 +39,14 @@
             this._cbAll = new DevExpress.XtraEditors.CheckEdit();
             this._gridProduct = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this._cbbProduct = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._cbGroup.Properties)).BeginInit();
@@ -59,6 +61,8 @@
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this._cbbProduct);
+            this.splitContainerControl1.Panel1.Controls.Add(this.label4);
             this.splitContainerControl1.Panel1.Controls.Add(this._txtQuantity);
             this.splitContainerControl1.Panel1.Controls.Add(this.label3);
             this.splitContainerControl1.Panel1.Controls.Add(this._cbbGroup);
@@ -77,7 +81,7 @@
             // 
             // _txtQuantity
             // 
-            this._txtQuantity.Location = new System.Drawing.Point(1136, 56);
+            this._txtQuantity.Location = new System.Drawing.Point(1544, 56);
             this._txtQuantity.Name = "_txtQuantity";
             this._txtQuantity.Size = new System.Drawing.Size(212, 33);
             this._txtQuantity.TabIndex = 9;
@@ -85,7 +89,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1024, 59);
+            this.label3.Location = new System.Drawing.Point(1432, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 25);
             this.label3.TabIndex = 8;
@@ -97,13 +101,13 @@
             this._cbbGroup.FormattingEnabled = true;
             this._cbbGroup.Location = new System.Drawing.Point(637, 36);
             this._cbbGroup.Name = "_cbbGroup";
-            this._cbbGroup.Size = new System.Drawing.Size(311, 33);
+            this._cbbGroup.Size = new System.Drawing.Size(269, 33);
             this._cbbGroup.TabIndex = 7;
             this._cbbGroup.SelectedIndexChanged += new System.EventHandler(this._cbbGroup_SelectedIndexChanged_1);
             // 
             // _txtTotal
             // 
-            this._txtTotal.Location = new System.Drawing.Point(1136, 17);
+            this._txtTotal.Location = new System.Drawing.Point(1544, 17);
             this._txtTotal.Name = "_txtTotal";
             this._txtTotal.Size = new System.Drawing.Size(212, 33);
             this._txtTotal.TabIndex = 6;
@@ -111,7 +115,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1024, 20);
+            this.label2.Location = new System.Drawing.Point(1432, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 25);
             this.label2.TabIndex = 5;
@@ -159,46 +163,22 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn6,
-            this.gridColumn5,
-            this.gridColumn4,
-            this.gridColumn3,
+            this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn1});
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6});
             this.gridView1.GridControl = this._gridProduct;
             this.gridView1.Name = "gridView1";
             // 
-            // gridColumn1
+            // gridColumn6
             // 
-            this.gridColumn1.Caption = "Loại";
-            this.gridColumn1.FieldName = "GroupName";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Sản Phẩm";
-            this.gridColumn2.FieldName = "ProductName";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Màu";
-            this.gridColumn3.FieldName = "ColorName";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Size";
-            this.gridColumn4.FieldName = "SizeName";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn6.Caption = "Giá Nhập";
+            this.gridColumn6.FieldName = "ItemPrice";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 5;
             // 
             // gridColumn5
             // 
@@ -208,13 +188,55 @@
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
             // 
-            // gridColumn6
+            // gridColumn4
             // 
-            this.gridColumn6.Caption = "Giá Nhập";
-            this.gridColumn6.FieldName = "ItemPrice";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn4.Caption = "Size";
+            this.gridColumn4.FieldName = "SizeName";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Màu";
+            this.gridColumn3.FieldName = "ColorName";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Sản Phẩm";
+            this.gridColumn2.FieldName = "ProductName";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Loại";
+            this.gridColumn1.FieldName = "GroupName";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // _cbbProduct
+            // 
+            this._cbbProduct.FormattingEnabled = true;
+            this._cbbProduct.Location = new System.Drawing.Point(1082, 36);
+            this._cbbProduct.Name = "_cbbProduct";
+            this._cbbProduct.Size = new System.Drawing.Size(311, 33);
+            this._cbbProduct.TabIndex = 11;
+            this._cbbProduct.SelectedIndexChanged += new System.EventHandler(this._cbbProduct_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(952, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 25);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Sản Phẩm";
             // 
             // CheckAllProduct
             // 
@@ -225,6 +247,7 @@
             this.Name = "CheckAllProduct";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "CheckAllProduct";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._cbGroup.Properties)).EndInit();
@@ -254,5 +277,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private System.Windows.Forms.TextBox _txtQuantity;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox _cbbProduct;
+        private System.Windows.Forms.Label label4;
     }
 }
